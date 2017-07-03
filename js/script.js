@@ -4,7 +4,7 @@ $(function() {
 		e.preventDefault();
 
 		// highlight current menu
-		$('.menu a').removeClass('active').filter(this).addClass('active');
+		RemoveHighlightMenu(this);
 
 		var $selector = $(this).attr('href');
 		var $h = $($selector);
@@ -35,7 +35,13 @@ $(function() {
 		$('html, body').animate({
 			// menu is fixed, margin-top for content is 80px
 			scrollTop: $('#about').offset().top - 80
-		}, 800); 
+		}, 800);
+		// remove highlight current menu
+		RemoveHighlightMenu();
 	});
 
 });
+
+RemoveHighlightMenu = function(menu) {
+	$('.menu a').removeClass('active').filter(menu).addClass('active');
+}
