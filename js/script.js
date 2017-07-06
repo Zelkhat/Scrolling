@@ -4,7 +4,7 @@ $(function() {
 		e.preventDefault();
 
 		// highlight current menu
-		RemoveHighlightMenu(this);
+		HighlightMenu(this);
 
 		var $selector = $(this).attr('href');
 		var $h = $($selector);
@@ -19,11 +19,10 @@ $(function() {
 	$btnScrollToTop = $('.scrollToTop');
 
 	$(window).scroll(function() {
-		//$btnScrollToTop = $('.scrollToTop');
 		if ($(document).scrollTop() > 500) {
-			$btnScrollToTop.css('display', 'block');
+			$btnScrollToTop.fadeIn(1000);
 		} else {
-			$btnScrollToTop.css('display', 'none');
+			$btnScrollToTop.fadeOut(1000);
 		}
 	});
 
@@ -33,15 +32,14 @@ $(function() {
 		$(this).css('background', 'rgba(51, 51, 51, 0.5)');
 	}).on('click', function() {
 		$('html, body').animate({
-			// menu is fixed, margin-top for content is 80px
-			scrollTop: $('#about').offset().top - 80
+			scrollTop: 0
 		}, 800);
 		// remove highlight current menu
-		RemoveHighlightMenu();
+		HighlightMenu();
 	});
 
 });
 
-RemoveHighlightMenu = function(menu) {
+HighlightMenu = function(menu) {
 	$('.menu a').removeClass('active').filter(menu).addClass('active');
 }
